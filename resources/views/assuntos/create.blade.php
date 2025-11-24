@@ -15,11 +15,7 @@
 
 <form action="{{ route('assuntos.store') }}" method="POST">
     @csrf
-    <div class="mb-3">
-        <label>Código</label>
-        <input type="number" name="codAs" class="form-control" value="{{ old('codAs') }}">
-    </div>
-
+    
     <div class="mb-3">
         <label>Descrição</label>
         <input type="text" name="Descricao" class="form-control" value="{{ old('Descricao') }}">

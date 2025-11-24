@@ -75,8 +75,7 @@ class AutorController extends Controller
      */
     public function update(AutorRequest $request, int $id): RedirectResponse
     {
-        $autor = $this->autorService->findOrFail($id);
-        $autor->update($request->validated());
+        $this->autorService->update($request->validated(), $id);
 
         return redirect()
             ->route('autores.index')

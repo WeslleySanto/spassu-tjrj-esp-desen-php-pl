@@ -15,11 +15,7 @@
 
 <form action="{{ route('autores.store') }}" method="POST">
     @csrf
-    <div class="mb-3">
-        <label>Código</label>
-        <input type="number" name="CodAu" class="form-control" value="{{ old('CodAu') }}">
-    </div>
-
+    
     <div class="mb-3">
         <label>Nome</label>
         <input type="text" name="Nome" class="form-control" value="{{ old('Nome') }}">

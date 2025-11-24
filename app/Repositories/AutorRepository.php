@@ -29,6 +29,19 @@ class AutorRepository
     }
 
     /**
+     * Update an existing Autor
+     *
+     * @param array $data
+     * @param integer $id
+     * @return void
+     */
+    public function update(array $data, int $id): void
+    {
+        $autor = $this->findOrFail($id);
+        $autor->update($data);
+    }
+
+    /**
      * Find an Autor by its ID or fail
      *
      * @param integer $id

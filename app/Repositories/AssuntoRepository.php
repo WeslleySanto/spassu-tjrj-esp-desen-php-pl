@@ -29,6 +29,19 @@ class AssuntoRepository
     }
 
     /**
+     * Update an existing Assunto
+     *
+     * @param array $data
+     * @param integer $id
+     * @return void
+     */
+    public function update(array $data, int $id): void
+    {
+        $assunto = $this->findOrFail($id);
+        $assunto->update($data);
+    }
+
+    /**
      * Find an Assunto by its ID or fail
      *
      * @param integer $id

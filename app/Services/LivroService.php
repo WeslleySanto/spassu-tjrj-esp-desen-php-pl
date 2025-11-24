@@ -31,11 +31,45 @@ class LivroService
      * Create a new Livro
      *
      * @param array $data
-     * @return void
+     * @return Livro
      */
-    public function store(array $data): void
+    public function store(array $data): Livro
     {
-        $this->livroRepository->create($data);
+        /** @var Livro $livro */
+        $livro = $this->livroRepository->store($data);
+
+        if (isset($data['autores'])) {
+            $livro->autores()->sync($data['autores']);
+        }
+
+        if (isset($data['assuntos'])) {
+            $livro->assuntos()->sync($data['assuntos']);
+        }
+
+        return $livro;
+    }
+
+    /**
+     * Update an existing Livro
+     *
+     * @param int $id
+     * @param array $data
+     * @return Livro
+     */
+    public function update(int $id, array $data): Livro
+    {
+        /** @var Livro $livro */
+        $livro = $this->livroRepository->update($id, $data);
+
+        if (isset($data['autores'])) {
+            $livro->autores()->sync($data['autores']);
+        }
+
+        if (isset($data['assuntos'])) {
+            $livro->assuntos()->sync($data['assuntos']);
+        }
+
+        return $livro;
     }
 
     /**

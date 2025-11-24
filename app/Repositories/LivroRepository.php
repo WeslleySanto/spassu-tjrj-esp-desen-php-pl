@@ -23,9 +23,23 @@ class LivroRepository
      * @param array $data
      * @return void
      */
-    public function create(array $data): void
+    public function store(array $data): Livro
     {
-        Livro::create($data);
+        return Livro::create($data);
+    }
+
+    /**
+     * Update an existing Livro
+     *
+     * @param int $id
+     * @param array $data
+     * @return Livro
+     */
+    public function update(int $id, array $data): Livro
+    {
+        $livro = $this->findOrFail($id);
+        $livro->update($data);
+        return $livro;
     }
 
     /**

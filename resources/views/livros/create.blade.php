@@ -17,11 +17,6 @@
     @csrf
 
     <div class="mb-3">
-        <label>Código</label>
-        <input type="number" name="CodL" class="form-control" value="{{ old('CodL') }}">
-    </div>
-
-    <div class="mb-3">
         <label>Título</label>
         <input type="text" name="Titulo" class="form-control" value="{{ old('Titulo') }}">
     </div>

@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Tests\Unit\App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
+use Tests\TestCase;
+use App\Http\Requests\LivroRequest;
 
-class LivroRequest extends ApiRequest
+class LivroRequestTest extends TestCase
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     * 
-     * @covers tests/Unit/App/Http/Requests/LivroRequestTest.php::testRules
-     */
-    public function rules(): array
+    protected $livroRequest;
+
+    protected function setUp(): void
     {
-        return [
+        parent::setUp();
+        $this->livroRequest = new LivroRequest();
+    }
+
+    public function testRules(): void
+    {
+        $expectedRules = [
             'Titulo' => 'required|string|max:40',
             'Editora' => 'nullable|string|max:40',
             'Edicao' => 'nullable|numeric',
@@ -25,18 +27,14 @@ class LivroRequest extends ApiRequest
             'assuntos' => 'nullable|array',
             'assuntos.*' => 'exists:assuntos,codAs',
         ];
+
+        $this->assertEquals($expectedRules, $this->livroRequest->rules());
+        
     }
 
-    /**
-     * Get the validation error messages that apply to the request.
-     *
-     * @return array
-     * 
-     * @covers tests/Unit/App/Http/Requests/LivroRequestTest.php::testMessages
-     */
-    public function messages(): array
+    public function testMessages(): void
     {
-        return [
+        $expectedMessages = [
             'Titulo.required' => 'O título é obrigatório.',
             'Titulo.max' => 'O título deve ter no máximo 40 caracteres.',
             'Editora.max' => 'A editora deve ter no máximo 40 caracteres.',
@@ -45,5 +43,7 @@ class LivroRequest extends ApiRequest
             'autores.*.exists' => 'Autor inválido.',
             'assuntos.*.exists' => 'Assunto inválido.',
         ];
+
+        $this->assertEquals($expectedMessages, $this->livroRequest->messages());
     }
 }

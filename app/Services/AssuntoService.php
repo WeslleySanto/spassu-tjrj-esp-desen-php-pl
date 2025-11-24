@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Collection as CollectionDatabase;
 class AssuntoService
 {
     /**
+     * AssuntoService constructor.
      * 
-     *
      * @param AssuntoRepository $assuntoRepository
      */
     public function __construct(

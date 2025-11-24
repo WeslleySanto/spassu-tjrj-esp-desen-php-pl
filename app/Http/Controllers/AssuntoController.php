@@ -74,8 +74,7 @@ class AssuntoController extends Controller
      */
     public function update(AssuntoRequest $request, int $id): RedirectResponse
     {
-        $as = $this->assuntoService->findOrFail($id);
-        $as->update($request->validated());
+        $this->assuntoService->update($request->validated(), $id);
 
         return redirect()
             ->route('assuntos.index')

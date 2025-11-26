@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Collection as CollectionSupport;
+use App\Helpers\FormatHelper;
 use App\Repositories\RelatorioRepository;
+use Illuminate\Support\Collection as CollectionSupport;
 
 class RelatorioService
 {
@@ -13,7 +14,8 @@ class RelatorioService
      * @param RelatorioRepository $relatorioRepository
      */
     public function __construct(
-        private RelatorioRepository $relatorioRepository
+        private RelatorioRepository $relatorioRepository,
+        private FormatHelper $formatHelper,
     ) {}
 
 
@@ -27,7 +29,7 @@ class RelatorioService
         $dados = $this->relatorioRepository->getLivros();
 
         return $dados->map(function ($linha) {
-            $linha->valor_formatado = $this->formatarMoeda($linha->livro_valor);
+            $linha->valor_formatado = $this->formatHelper->moeda($linha->livro_valor);
             $linha->ano_formatado = $linha->livro_ano_publicacao ?: '---';
             $linha->editora_formatada = $linha->livro_editora ?: '---';
             $linha->edicao_formatada = $linha->livro_edicao ?: '---';
@@ -35,20 +37,5 @@ class RelatorioService
 
             return $linha;
         });
-    }
-
-    /**
-     * Format a value as currency.
-     *
-     * @param float $valor
-     * @return void
-     */
-    private function formatarMoeda(float $valor)
-    {
-        if ($valor === null) {
-            return 'R$ 0,00';
-        }
-
-        return 'R$ ' . number_format($valor, 2, ',', '.');
     }
 }

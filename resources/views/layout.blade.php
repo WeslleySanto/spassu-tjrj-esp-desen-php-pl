@@ -15,7 +15,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('livros.index') }}">Livros</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('autores.index') }}">Autores</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('assuntos.index') }}">Assuntos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('relatorio.livros') }}">Relatorio Web</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('relatorio.web') }}">Relatorio Web</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('relatorio.pdf') }}">Relatorio PDF</a></li>
         </ul>
     </div>

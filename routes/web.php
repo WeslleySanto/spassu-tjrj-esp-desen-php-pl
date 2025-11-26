@@ -13,5 +13,5 @@ Route::get('/', function () {
 Route::resource('livros', LivroController::class);
 Route::resource('autores', AutorController::class);
 Route::resource('assuntos', AssuntoController::class);
-Route::get('/relatorio/livros', [RelatorioController::class, 'index'])->name('relatorio.livros');
+Route::get('/relatorio/web', [RelatorioController::class, 'web'])->name('relatorio.web');
 Route::get('/relatorio/pdf', [RelatorioController::class, 'pdf'])->name('relatorio.pdf');

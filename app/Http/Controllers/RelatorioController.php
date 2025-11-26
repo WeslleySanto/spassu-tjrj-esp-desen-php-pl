@@ -23,7 +23,7 @@ class RelatorioController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function web(): View
     {
         $dados = $this->relatorioService->gerarRelatorio();
 

@@ -14,26 +14,12 @@
                 <strong>{{ $livro->Titulo }}</strong>
             </div>
             <div class="card-body">
-                <p><strong>Código:</strong> {{ $livro->CodL }}</p>
-                <p><strong>Editora:</strong> {{ $livro->Editora ?? 'N/A' }}</p>
-                <p><strong>Edição:</strong> {{ $livro->Edicao ?? 'N/A' }}</p>
-                <p><strong>Ano:</strong> {{ $livro->AnoPublicacao ?? 'N/A' }}</p>
-
-                <p><strong>Autores:</strong>
-                    @forelse($livro->autores as $autor)
-                        <span class="badge bg-primary">{{ $autor->Nome }}</span>
-                    @empty
-                        Nenhum autor
-                    @endforelse
-                </p>
-
-                <p><strong>Assuntos:</strong>
-                    @forelse($livro->assuntos as $assunto)
-                        <span class="badge bg-secondary">{{ $assunto->Descricao }}</span>
-                    @empty
-                        Nenhum assunto
-                    @endforelse
-                </p>
+                <p><strong>Editora:</strong> {{ $livro->editora_formatada }}</p>
+                <p><strong>Edição:</strong> {{ $livro->edicao_formatada }}</p>
+                <p><strong>Ano:</strong> {{ $livro->ano_formatado }}</p>
+                <p><strong>Valor:</strong> {{ $livro->valor_formatado }}</p>
+                <p><strong>Autores:</strong> {!! $livro->autores_formatados !!}</p>
+                <p><strong>Assuntos:</strong> {!! $livro->assuntos_formatados !!}</p>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <a href="{{ route('livros.edit', $livro->CodL) }}" class="btn btn-sm btn-warning">Editar</a>

@@ -9,12 +9,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-        <a class="navbar-brand" href="#">Biblioteca</a>
+        <a class="navbar-brand" href="{{ route('livros.index') }}">Biblioteca</a>
 
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="{{ route('livros.index') }}">Livros</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('autores.index') }}">Autores</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('assuntos.index') }}">Assuntos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('relatorio.livros') }}">Relatorio Web</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('relatorio.pdf') }}">Relatorio PDF</a></li>
         </ul>
     </div>
 </nav>

@@ -22,6 +22,7 @@ class LivroRequestTest extends TestCase
             'Editora' => 'nullable|string|max:40',
             'Edicao' => 'nullable|numeric',
             'AnoPublicacao' => 'nullable|string|max:4',
+            'Valor' => 'nullable|numeric|min:0',
             'autores' => 'nullable|array',
             'autores.*' => 'exists:autores,CodAu',
             'assuntos' => 'nullable|array',
@@ -40,6 +41,8 @@ class LivroRequestTest extends TestCase
             'Editora.max' => 'A editora deve ter no máximo 40 caracteres.',
             'Edicao.numeric' => 'A edição deve ser um número.',
             'AnoPublicacao.max' => 'O ano de publicação deve ter no máximo 4 caracteres.',
+            'Valor.numeric' => 'O valor deve ser um número.',
+            'Valor.min' => 'O valor deve ser no mínimo 0.',
             'autores.*.exists' => 'Autor inválido.',
             'assuntos.*.exists' => 'Assunto inválido.',
         ];

@@ -40,24 +40,28 @@
     <div class="mb-3">
         <label>Autores</label>
         <select name="autores[]" class="form-control" multiple>
-            @foreach($autores as $a)
+            @forelse($autores as $a)
                 <option value="{{ $a->CodAu }}"
                     {{ (collect(old('autores', $livro->autores->pluck('CodAu')))->contains($a->CodAu)) ? 'selected' : '' }}>
                     {{ $a->Nome }}
                 </option>
-            @endforeach
+            @empty
+                <option disabled>Nenhum autor disponível</option>
+            @endforelse
         </select>
     </div>
 
     <div class="mb-3">
         <label>Assuntos</label>
         <select name="assuntos[]" class="form-control" multiple>
-            @foreach($assuntos as $as)
+            @forelse($assuntos as $as)
                 <option value="{{ $as->codAs }}"
                     {{ (collect(old('assuntos', $livro->assuntos->pluck('codAs')))->contains($as->codAs)) ? 'selected' : '' }}>
                     {{ $as->Descricao }}
                 </option>
-            @endforeach
+            @empty
+                <option disabled>Nenhum assunto disponível</option>
+            @endforelse
         </select>
     </div>
 

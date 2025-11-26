@@ -11,7 +11,12 @@ class Livro extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'CodL', 'Titulo', 'Editora', 'Edicao', 'AnoPublicacao'
+        'CodL',
+        'Titulo',
+        'Editora',
+        'Edicao',
+        'AnoPublicacao',
+        'Valor'
     ];
 
     public function autores()

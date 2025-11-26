@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Livro;
+use App\Helpers\FormatHelper;
 use App\Repositories\LivroRepository;
 use Illuminate\Database\Eloquent\Collection as CollectionDatabase;
 
@@ -12,9 +13,11 @@ class LivroService
      * LivroService constructor.
      *
      * @param LivroRepository $livroRepository
+     * @param FormatHelper $formatHelper
      */
     public function __construct(
         private LivroRepository $livroRepository,
+        private FormatHelper $formatHelper
     ) {}
 
     /**
@@ -24,7 +27,52 @@ class LivroService
      */
     public function index(): CollectionDatabase
     {
-        return $this->livroRepository->index();
+        $livros = $this->livroRepository->index();
+
+        return $livros->map(function ($livro) {
+            $livro->valor_formatado     = $this->formatHelper->moeda($livro->Valor);
+            $livro->editora_formatada   = $livro->Editora ?? 'N/A';
+            $livro->edicao_formatada    = $livro->Edicao ?? 'N/A';
+            $livro->ano_formatado       = $livro->AnoPublicacao ?? 'N/A';
+            $livro->autores_formatados  = $this->getAutoresFormatados($livro->autores);
+            $livro->assuntos_formatados = $this->getAssuntosFormatados($livro->assuntos);
+
+            return $livro;
+        });
+    }
+
+    /**
+     * Get formatted authors
+     *
+     * @param CollectionDatabase $autores
+     * @return string
+     */
+    protected function getAutoresFormatados(CollectionDatabase $autores): string
+    {
+        if ($autores->isEmpty()) {
+            return 'Nenhum autor';
+        }
+
+        return $autores
+            ->map(fn($a) => '<span class="badge bg-primary">' . e($a->Nome) . '</span>')
+            ->implode(' ');
+    }
+
+    /**
+     * Get formatted subjects
+     *
+     * @param CollectionDatabase $assuntos
+     * @return string
+     */
+    protected function getAssuntosFormatados(CollectionDatabase $assuntos): string
+    {
+        if ($assuntos->isEmpty()) {
+            return 'Nenhum assunto';
+        }
+
+        return $assuntos
+            ->map(fn($a) => '<span class="badge bg-secondary">' . e($a->Descricao) . '</span>')
+            ->implode(' ');
     }
 
     /**

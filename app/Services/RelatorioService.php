@@ -12,12 +12,12 @@ class RelatorioService
      * RelatorioService constructor.
      *
      * @param RelatorioRepository $relatorioRepository
+     * @param FormatHelper $formatHelper
      */
     public function __construct(
         private RelatorioRepository $relatorioRepository,
         private FormatHelper $formatHelper,
     ) {}
-
 
     /**
      * Generate a report.

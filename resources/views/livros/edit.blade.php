@@ -38,6 +38,11 @@
     </div>
 
     <div class="mb-3">
+        <label>Valor (R$)</label>
+        <input type="number" name="Valor" class="form-control" step="0.01" min="0" value="{{ old('Valor', $livro->Valor) }}">
+    </div>
+
+    <div class="mb-3">
         <label>Autores</label>
         <select name="autores[]" class="form-control" multiple>
             @forelse($autores as $a)
